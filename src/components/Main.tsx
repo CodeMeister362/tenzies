@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../App.css";
 import Die from "./Die";
 
@@ -16,10 +16,6 @@ const Main = () => {
 	const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
 		console.log(e.currentTarget.textContent);
 	};
-
-	useEffect(() => {
-		allNewDice();
-	}, []);
 
 	const diceElements = dice.map((number, index) => {
 		return (
