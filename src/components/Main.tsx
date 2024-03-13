@@ -3,25 +3,25 @@ import "../App.css";
 import Die from "./Die";
 
 const Main = () => {
-	const [diceNumbers, setDice] = useState([] as number[]);
+	const allNewDice = () => {
+		const newDice = [];
+		for (let i = 0; i < 10; i++) {
+			newDice.push(Math.ceil(Math.random() * 6));
+		}
+		return newDice;
+	};
+
+	const [dice, setDice] = useState(allNewDice());
 
 	const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
 		console.log(e.currentTarget.textContent);
-	};
-
-	const allNewDice = () => {
-		setDice([]);
-		for (let i = 0; i < 10; i++) {
-			const randomNumber = Math.floor(Math.random() * 6) + 1;
-			setDice((prev) => [...prev, randomNumber]);
-		}
 	};
 
 	useEffect(() => {
 		allNewDice();
 	}, []);
 
-	const dice = diceNumbers.map((number, index) => {
+	const diceElements = dice.map((number, index) => {
 		return (
 			<Die
 				key={index}
@@ -38,10 +38,11 @@ const Main = () => {
 				Roll until all dice are the same. Click each die to freeze it at its
 				current value between rolls.
 			</p>
-			<div className="dice-container">{dice}</div>
+			<div className="dice-container">{diceElements}</div>
 			<button
 				type="button"
 				className="roll-btn"
+				onClick={() => setDice(allNewDice())}
 			>
 				Roll
 			</button>
