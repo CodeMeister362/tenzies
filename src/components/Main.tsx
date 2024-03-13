@@ -1,15 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../App.css";
 import Die from "./Die";
 
 const Main = () => {
-	const [diceNum, setDice] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+	const [diceNumbers, setDice] = useState([] as number[]);
 
-	const dice = diceNum.map((number, index) => {
+	const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+		console.log(e.currentTarget.textContent);
+	};
+
+	const allNewDice = () => {
+		setDice([]);
+		for (let i = 0; i < 10; i++) {
+			const randomNumber = Math.floor(Math.random() * 6) + 1;
+			setDice((prev) => [...prev, randomNumber]);
+		}
+	};
+
+	useEffect(() => {
+		allNewDice();
+	}, []);
+
+	const dice = diceNumbers.map((number, index) => {
 		return (
 			<Die
 				key={index}
 				number={number}
+				handleClick={handleClick}
 			/>
 		);
 	});
