@@ -2,14 +2,14 @@ import React from "react";
 
 type DieProps = {
 	number: number;
-	key: number;
+	handleClick: (e: React.MouseEvent<HTMLDivElement>) => void;
 };
 
-const Die = ({ number, key }: DieProps) => {
+const Die = ({ number, handleClick }: DieProps) => {
 	return (
 		<div
 			className="die"
-			key={key}
+			onClick={handleClick}
 		>
 			{number}
 		</div>
