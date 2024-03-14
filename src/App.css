@@ -27,7 +27,6 @@
 
 .die {
     border: 2px solid #0B2434;
-    background-color: #FFFFFF;
     width: 75px;
     height: 75px;
     border-radius: 10px;
@@ -37,6 +36,16 @@
     font-size: 2rem;
     cursor: pointer;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+}
+
+.clicked {
+    background-color: #59E391;
+    color: #000000;
+}
+
+.not-clicked {
+    background-color: #FFFFFF;
+    color: #0B2434;
 }
 
 .roll-btn {
