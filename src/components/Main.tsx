@@ -24,12 +24,13 @@ const Main = () => {
 
 	useEffect(() => {
 		const allHeld = dice.every((die) => die.isHeld);
-		allHeld && setTenzies(true);
+		const allSame = dice.every((die) => die.value === dice[0].value);
+		allHeld && allSame && setTenzies(true);
 	}, [dice]);
 
 	const holdDie = (e: React.MouseEvent<HTMLDivElement>) => {
 		const updateDice = dice.map((die) => {
-			if (die.id === e.currentTarget.id && die.isHeld === false) {
+			if (die.id === e.currentTarget.id) {
 				return { ...die, isHeld: !die.isHeld };
 			} else {
 				return die;
